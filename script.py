@@ -13,13 +13,10 @@ with open(csv_filename, 'r') as csvfile:
     reader = csv.reader(csvfile, skipinitialspace=True)
     next(reader)
     for row in reader:
-        path_list = []
-        path_list.append('rtsp://admin:admin@' + row[0] + ':' + row[1] + '/1/')
-        path_list.append('rtsp://user:user@' + row[0] + ':' + row[1] + '/1/')
-        path_list.append('rtsp://' + row[0] + ':' + row[1] + '/1/')
-
-        image_path = ""
-        status = "Not Working"
+        print('Detecting IP Address', row[0])
+        path_list = ['rtsp://admin:admin@' + row[0] + ':' + row[1] + '/1/', 'rtsp://user:user@' + row[0] + ':' + row[1] + '/1/', 'rtsp://' + row[0] + ':' + row[1] + '/1/']
+        image_path = ''
+        status = 'Not Working'
         stream_path = ''
         for i in range(3):
             vcap = cv2.VideoCapture(path_list[i])
